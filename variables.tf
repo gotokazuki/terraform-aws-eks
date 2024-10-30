@@ -61,7 +61,7 @@ variable "eks_managed_node_ami_type" {
   default     = "x86_64"
 
   validation {
-    condition     = contains(["x86_64", "arm64"], var.input_parameter)
+    condition     = contains(["x86_64", "arm64"], var.eks_managed_node_ami_type)
     error_message = "Allowed values for eks_managed_node_ami_type are \"x86_64\", \"arm64\"."
   }
 }
