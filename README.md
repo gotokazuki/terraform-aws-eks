@@ -61,9 +61,9 @@ No modules.
 | [aws_security_group_rule.eks_node_ingress_internal](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [kubernetes_config_map.aws_auth](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
 | [kubernetes_namespace_v1.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace_v1) | resource |
-| [aws_ami.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
-| [aws_ssm_parameter.eks_ami_image_id](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
+| [aws_ssm_parameter.eks_ami_image_id_arm64](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
+| [aws_ssm_parameter.eks_ami_image_id_x86_64](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter) | data source |
 | [tls_certificate.eks_cluster_oidc](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/data-sources/certificate) | data source |
 
 ## Inputs
@@ -78,7 +78,7 @@ No modules.
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes version of the EKS cluster. | `string` | n/a | yes |
 | <a name="input_eks_enabled_cluster_log_types"></a> [eks\_enabled\_cluster\_log\_types](#input\_eks\_enabled\_cluster\_log\_types) | List of the desired control plane logging to enable. | `set(string)` | <pre>[<br>  "api",<br>  "audit"<br>]</pre> | no |
 | <a name="input_eks_logs_retention_in_days"></a> [eks\_logs\_retention\_in\_days](#input\_eks\_logs\_retention\_in\_days) | Logs retention in days of the EKS cluster. | `number` | `7` | no |
-| <a name="input_eks_managed_node_ami_type"></a> [eks\_managed\_node\_ami\_type](#input\_eks\_managed\_node\_ami\_type) | AMI type of managed nodes. | `string` | `"CUSTOM"` | no |
+| <a name="input_eks_managed_node_ami_type"></a> [eks\_managed\_node\_ami\_type](#input\_eks\_managed\_node\_ami\_type) | AMI type of managed nodes. | `string` | `"x86_64"` | no |
 | <a name="input_eks_managed_node_capacity_type"></a> [eks\_managed\_node\_capacity\_type](#input\_eks\_managed\_node\_capacity\_type) | Capacity type of managed nodes. | `string` | `"SPOT"` | no |
 | <a name="input_eks_managed_node_desired_size"></a> [eks\_managed\_node\_desired\_size](#input\_eks\_managed\_node\_desired\_size) | Desired size of managed nodes. | `number` | `1` | no |
 | <a name="input_eks_managed_node_instance_types"></a> [eks\_managed\_node\_instance\_types](#input\_eks\_managed\_node\_instance\_types) | Instance type of managed nodes. | `set(string)` | n/a | yes |

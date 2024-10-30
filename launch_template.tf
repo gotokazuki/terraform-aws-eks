@@ -18,7 +18,7 @@ resource "aws_launch_template" "this" {
     }
   }
 
-  image_id = nonsensitive(data.aws_ssm_parameter.eks_ami_image_id.value)
+  image_id = var.eks_managed_node_ami_type == "x86_64" ? nonsensitive(data.aws_ssm_parameter.eks_ami_image_id_x86_64.value) : nonsensitive(data.aws_ssm_parameter.eks_ami_image_id_arm64.value)
   user_data = base64encode(templatefile("${path.module}/user_data.sh", {
     CLUSTER_NAME = aws_eks_cluster.this.name
     ENDPOINT     = aws_eks_cluster.this.endpoint
