@@ -2,6 +2,9 @@
 
 This module creates an EKS cluster on AWS.
 
+> [!WARNING]
+> This module does not support the AMI for managed node groups based on Amazon Linux 2 (AL2).
+
 ## Requirements
 
 | Name | Version |
