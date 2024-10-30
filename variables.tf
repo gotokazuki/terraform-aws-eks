@@ -58,7 +58,12 @@ variable "eks_managed_node_capacity_type" {
 variable "eks_managed_node_ami_type" {
   description = "AMI type of managed nodes."
   type        = string
-  default     = "CUSTOM"
+  default     = "x86_64"
+
+  validation {
+    condition     = contains(["x86_64", "arm64"], var.input_parameter)
+    error_message = "Allowed values for eks_managed_node_ami_type are \"x86_64\", \"arm64\"."
+  }
 }
 variable "k8s_aws_auth_map_roles" {
   description = "Additional mapping for IAM roles and Kubernetes RBAC."

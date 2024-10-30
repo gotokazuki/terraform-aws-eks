@@ -53,7 +53,7 @@ resource "aws_eks_node_group" "this" {
   subnet_ids      = var.private_subnet_ids
   capacity_type   = var.eks_managed_node_capacity_type
   instance_types  = var.eks_managed_node_instance_types
-  ami_type        = var.eks_managed_node_ami_type
+  ami_type        = "CUSTOM"
 
   scaling_config {
     desired_size = var.eks_managed_node_desired_size
