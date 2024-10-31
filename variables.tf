@@ -65,6 +65,11 @@ variable "eks_managed_node_ami_type" {
     error_message = "Allowed values for eks_managed_node_ami_type are \"x86_64\", \"arm64\"."
   }
 }
+variable "eks_managed_node_volume_size" {
+  description = "Volume size of managed nodes. (GiB)"
+  type        = number
+  default     = 20
+}
 variable "k8s_aws_auth_map_roles" {
   description = "Additional mapping for IAM roles and Kubernetes RBAC."
   type = list(object({

@@ -1,6 +1,20 @@
 resource "aws_launch_template" "this" {
   name = "${var.prefix}-eks-managed-node-launch-template"
 
+  block_device_mappings {
+    device_name = "/dev/xvda"
+
+    ebs {
+      volume_size           = var.eks_managed_node_volume_size
+      volume_type           = "gp3"
+      encrypted             = true
+      iops                  = 1000
+      throughput            = 125
+      kms_key_id            = aws_kms_key.eks_node.arn
+      delete_on_termination = true
+    }
+  }
+
   network_interfaces {
     associate_public_ip_address = false
     security_groups             = [aws_security_group.eks_node.id]
