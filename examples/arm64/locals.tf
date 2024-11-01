@@ -5,10 +5,9 @@ locals {
   subnets_number            = 2
   eks_cluster_name          = "example"
   eks_cluster_version       = "1.30"
-  eks_managed_node_ami_type = "x86_64"
+  eks_managed_node_ami_type = "arm64"
   eks_managed_node_instance_types = [
-    "t3.medium",
-    "t2.medium",
+    "t4g.medium",
   ]
   k8s_aws_auth_map_users = [
     {
