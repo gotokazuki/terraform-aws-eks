@@ -23,6 +23,7 @@ module "eks" {
   ]
   eks_logs_retention_in_days               = 30
   eks_managed_node_instance_types          = local.eks_managed_node_instance_types
+  eks_managed_node_capacity_type           = local.eks_managed_node_capacity_type
   eks_managed_node_desired_size            = 2
   eks_managed_node_max_size                = 3
   eks_managed_node_min_size                = 2
