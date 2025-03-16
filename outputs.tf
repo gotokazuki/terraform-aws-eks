@@ -18,10 +18,6 @@ output "cluster_iam_oidc_provider_url" {
   description = "OpenID Connect provider URL of the EKS cluster."
   value       = aws_iam_openid_connect_provider.this.url
 }
-output "node_group_autoscaling_group_name" {
-  description = "Name of the auto scaling group for the EKS node group."
-  value       = aws_eks_node_group.this.resources[0].autoscaling_groups[0].name
-}
 output "cluster_oidc_issuer_url" {
   description = "Issuer URL on the EKS cluster for the OpenID Connect identity provider."
   value       = aws_eks_cluster.this.identity[0].oidc[0].issuer
