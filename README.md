@@ -7,14 +7,14 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.79 |
 | <a name="requirement_tls"></a> [tls](#requirement\_tls) | >= 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.79 |
 | <a name="provider_tls"></a> [tls](#provider\_tls) | >= 4.0 |
 
 ## Modules
@@ -29,16 +29,12 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 |------|------|
 | [aws_cloudwatch_log_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 | [aws_eks_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster) | resource |
-| [aws_iam_instance_profile.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_openid_connect_provider.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider) | resource |
-| [aws_iam_policy.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.eks_cluster](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.eks_cluster_auth_mode](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_kms_key.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
-| [aws_security_group.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group.eks_owned_eni](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.eks_cluster_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.eks_cluster_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
@@ -49,10 +45,10 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_bootstrap_cluster_creator_admin_permissions"></a> [bootstrap\_cluster\_creator\_admin\_permissions](#input\_bootstrap\_cluster\_creator\_admin\_permissions) | Whether to bootstrap the cluster creator with admin permissions. | `bool` | `true` | no |
 | <a name="input_eks_access_entrys"></a> [eks\_access\_entrys](#input\_eks\_access\_entrys) | IAM users to access the EKS cluster. | <pre>map(object({<br>    iam                     = string<br>    policy                  = string<br>    access_scope_type       = string<br>    access_scope_namespaces = set(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_eks_bootstrap_cluster_creator_admin_permissions"></a> [eks\_bootstrap\_cluster\_creator\_admin\_permissions](#input\_eks\_bootstrap\_cluster\_creator\_admin\_permissions) | Whether to bootstrap the cluster creator with admin permissions. | `bool` | `true` | no |
 | <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | Name of the EKS cluster. | `string` | n/a | yes |
-| <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes version of the EKS cluster. | `string` | n/a | yes |
+| <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes version of the EKS cluster. Currently supports 1.32. | `string` | n/a | yes |
 | <a name="input_eks_enabled_cluster_log_types"></a> [eks\_enabled\_cluster\_log\_types](#input\_eks\_enabled\_cluster\_log\_types) | List of the desired control plane logging to enable. | `set(string)` | <pre>[<br>  "api",<br>  "audit"<br>]</pre> | no |
 | <a name="input_eks_logs_retention_in_days"></a> [eks\_logs\_retention\_in\_days](#input\_eks\_logs\_retention\_in\_days) | Logs retention in days of the EKS cluster. | `number` | `7` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Name prefix for resources. | `string` | n/a | yes |
@@ -71,5 +67,4 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 | <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | Name of the EKS cluster. |
 | <a name="output_cluster_oidc_issuer_url"></a> [cluster\_oidc\_issuer\_url](#output\_cluster\_oidc\_issuer\_url) | Issuer URL on the EKS cluster for the OpenID Connect identity provider. |
 | <a name="output_eks_cluster_security_group_id"></a> [eks\_cluster\_security\_group\_id](#output\_eks\_cluster\_security\_group\_id) | Security Group ID of the EKS cluster that generated automatically by EKS. |
-| <a name="output_eks_node_security_group_id"></a> [eks\_node\_security\_group\_id](#output\_eks\_node\_security\_group\_id) | Security Group ID to allow access to the worker nodes. |
 | <a name="output_eks_owned_eni_security_group_id"></a> [eks\_owned\_eni\_security\_group\_id](#output\_eks\_owned\_eni\_security\_group\_id) | Security Group ID to allow between the worker nodes and the control plane in the EKS cluster. |
