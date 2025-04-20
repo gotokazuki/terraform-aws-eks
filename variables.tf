@@ -64,7 +64,7 @@ variable "eks_logs_retention_in_days" {
     error_message = "Log retention must be between 1 and 3653 days."
   }
 }
-variable "eks_access_entrys" {
+variable "eks_access_entries" {
   description = "IAM users to access the EKS cluster."
   type = map(object({
     iam                     = string
@@ -75,7 +75,7 @@ variable "eks_access_entrys" {
 
   validation {
     condition = alltrue([
-      for entry in var.eks_access_entrys : contains([
+      for entry in var.eks_access_entries : contains([
         "NAMESPACE",
         "CLUSTER"
       ], entry.access_scope_type)

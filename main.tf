@@ -47,7 +47,7 @@ resource "aws_eks_cluster" "this" {
 }
 
 module "access_entry" {
-  for_each = var.eks_access_entrys
+  for_each = var.eks_access_entries
 
   source = "./modules/access_entry"
 

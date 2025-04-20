@@ -7,7 +7,7 @@ locals {
 
   eks_cluster_name    = "example"
   eks_cluster_version = "1.32"
-  eks_access_entrys = {
+  eks_access_entries = {
     # key = {
     #   iam                     = "arn:aws:iam::123456789012:user/name"
     #   policy                  = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
