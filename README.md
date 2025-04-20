@@ -45,7 +45,7 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_eks_access_entrys"></a> [eks\_access\_entrys](#input\_eks\_access\_entrys) | IAM users to access the EKS cluster. | <pre>map(object({<br>    iam                     = string<br>    policy                  = string<br>    access_scope_type       = string<br>    access_scope_namespaces = set(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_eks_access_entries"></a> [eks\_access\_entries](#input\_eks\_access\_entries) | IAM users to access the EKS cluster. | <pre>map(object({<br>    iam                     = string<br>    policy                  = string<br>    access_scope_type       = string<br>    access_scope_namespaces = set(string)<br>  }))</pre> | n/a | yes |
 | <a name="input_eks_bootstrap_cluster_creator_admin_permissions"></a> [eks\_bootstrap\_cluster\_creator\_admin\_permissions](#input\_eks\_bootstrap\_cluster\_creator\_admin\_permissions) | Whether to bootstrap the cluster creator with admin permissions. | `bool` | `true` | no |
 | <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | Name of the EKS cluster. | `string` | n/a | yes |
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes version of the EKS cluster. Currently supports 1.32. | `string` | n/a | yes |

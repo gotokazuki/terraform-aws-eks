@@ -23,7 +23,7 @@ module "eks" {
     "audit",
   ]
   eks_logs_retention_in_days = 30
-  eks_access_entrys          = local.eks_access_entrys
+  eks_access_entries         = local.eks_access_entries
 
   vpc_id             = module.network.vpc_id
   vpc_cidr_block     = module.network.vpc_cidr_block
