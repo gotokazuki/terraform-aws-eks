@@ -28,13 +28,3 @@ resource "aws_security_group_rule" "eks_cluster_egress" {
   cidr_blocks       = ["0.0.0.0/0"]
   ipv6_cidr_blocks  = ["::/0"]
 }
-
-resource "aws_security_group" "eks_node" {
-  name        = "${var.prefix}-eks-node"
-  description = "EKS Node"
-  vpc_id      = var.vpc_id
-
-  tags = {
-    Name = "${var.prefix}-eks-node"
-  }
-}

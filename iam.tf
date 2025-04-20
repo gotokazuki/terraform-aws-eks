@@ -19,45 +19,8 @@ resource "aws_iam_role" "eks_cluster" {
     }
   )
 }
+
 # https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/cluster-iam-role.html
-resource "aws_iam_policy" "eks_cluster" {
-  name = "${var.prefix}-eks-cluster"
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Effect" : "Allow",
-        "Action" : [
-          "ec2:CreateTags"
-        ],
-        "Resource" : "arn:aws:ec2:*:*:instance/*",
-        "Condition" : {
-          "ForAnyValue:StringLike" : {
-            "aws:TagKeys" : "kubernetes.io/cluster/*"
-          }
-        }
-      },
-      {
-        "Effect" : "Allow",
-        "Action" : [
-          "ec2:DescribeInstances",
-          "ec2:DescribeNetworkInterfaces",
-          "ec2:DescribeVpcs",
-          "ec2:DescribeDhcpOptions",
-          "ec2:DescribeAvailabilityZones",
-          "kms:DescribeKey"
-        ],
-        "Resource" : "*"
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "eks_cluster" {
-  policy_arn = aws_iam_policy.eks_cluster.arn
-  role       = aws_iam_role.eks_cluster.name
-}
-
 resource "aws_iam_role_policy_attachment" "eks_cluster_auth_mode" {
   for_each = toset([
     "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
@@ -89,11 +52,6 @@ resource "aws_iam_role" "eks_node" {
   })
 }
 
-resource "aws_iam_instance_profile" "eks_node" {
-  name = "${var.prefix}-eks-node"
-  role = aws_iam_role.eks_node.name
-}
-
 resource "aws_iam_role_policy_attachment" "eks_node" {
   for_each = toset([
     "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
@@ -101,7 +59,6 @@ resource "aws_iam_role_policy_attachment" "eks_node" {
     "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
     "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
     "arn:aws:iam::aws:policy/AutoScalingFullAccess",
-    "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
     "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy",
     "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly",
   ])

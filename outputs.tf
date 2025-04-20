@@ -26,10 +26,6 @@ output "eks_owned_eni_security_group_id" {
   description = "Security Group ID to allow between the worker nodes and the control plane in the EKS cluster."
   value       = aws_security_group.eks_owned_eni.id
 }
-output "eks_node_security_group_id" {
-  description = "Security Group ID to allow access to the worker nodes."
-  value       = aws_security_group.eks_node.id
-}
 output "eks_cluster_security_group_id" {
   description = "Security Group ID of the EKS cluster that generated automatically by EKS."
   value       = aws_eks_cluster.this.vpc_config[0].cluster_security_group_id
