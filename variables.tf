@@ -76,12 +76,23 @@ variable "eks_access_entries" {
   validation {
     condition = alltrue([
       for entry in var.eks_access_entries : contains([
-        "NAMESPACE",
-        "CLUSTER"
+        "namespace",
+        "cluster"
       ], entry.access_scope_type)
     ])
-    error_message = "Access scope type must be either NAMESPACE or CLUSTER."
+    error_message = "Access scope type must be either namespace or cluster."
   }
+}
+variable "eks_endpoint_public_access" {
+  description = "Whether the Amazon EKS public API server endpoint is enabled."
+  type        = bool
+  default     = true
+}
+
+variable "eks_endpoint_private_access" {
+  description = "Whether the Amazon EKS private API server endpoint is enabled."
+  type        = bool
+  default     = false
 }
 
 # network
