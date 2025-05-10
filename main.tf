@@ -32,8 +32,8 @@ resource "aws_eks_cluster" "this" {
       aws_security_group.eks_owned_eni.id,
     ])
     subnet_ids              = var.private_subnet_ids
-    endpoint_public_access  = true
-    endpoint_private_access = true
+    endpoint_public_access  = var.eks_endpoint_public_access
+    endpoint_private_access = var.eks_endpoint_private_access
   }
 
   version                   = var.eks_cluster_version

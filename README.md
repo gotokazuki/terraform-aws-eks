@@ -34,7 +34,6 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 | [aws_iam_role.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.eks_cluster_auth_mode](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_iam_role_policy_attachment.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [aws_kms_key.eks_node](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) | resource |
 | [aws_security_group.eks_owned_eni](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.eks_cluster_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.eks_cluster_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
@@ -50,6 +49,8 @@ This module creates an EKS cluster with Auto Mode enabled on AWS.
 | <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | Name of the EKS cluster. | `string` | n/a | yes |
 | <a name="input_eks_cluster_version"></a> [eks\_cluster\_version](#input\_eks\_cluster\_version) | Kubernetes version of the EKS cluster. Currently supports 1.32. | `string` | n/a | yes |
 | <a name="input_eks_enabled_cluster_log_types"></a> [eks\_enabled\_cluster\_log\_types](#input\_eks\_enabled\_cluster\_log\_types) | List of the desired control plane logging to enable. | `set(string)` | <pre>[<br>  "api",<br>  "audit"<br>]</pre> | no |
+| <a name="input_eks_endpoint_private_access"></a> [eks\_endpoint\_private\_access](#input\_eks\_endpoint\_private\_access) | Whether the Amazon EKS private API server endpoint is enabled. | `bool` | `false` | no |
+| <a name="input_eks_endpoint_public_access"></a> [eks\_endpoint\_public\_access](#input\_eks\_endpoint\_public\_access) | Whether the Amazon EKS public API server endpoint is enabled. | `bool` | `true` | no |
 | <a name="input_eks_logs_retention_in_days"></a> [eks\_logs\_retention\_in\_days](#input\_eks\_logs\_retention\_in\_days) | Logs retention in days of the EKS cluster. | `number` | `7` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Name prefix for resources. | `string` | n/a | yes |
 | <a name="input_private_subnet_ids"></a> [private\_subnet\_ids](#input\_private\_subnet\_ids) | IDs of the private subnet. | `set(string)` | n/a | yes |
